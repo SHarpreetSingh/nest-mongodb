@@ -43,7 +43,7 @@ export class AuthenticationService {
     const token = this.jwtService.sign(payload);
     console.log("token",token);
 
-    return `Authentication=${token}; HttpOnly; Path=/; Max-Age=86400000    )}`;
+    return `Authentication=${token}; HttpOnly; Path=/; Max-Age=86400000`;
   }
 
   public getCookieForLogOut() {
@@ -57,7 +57,7 @@ export class AuthenticationService {
       return user;
     } catch (error) {
       throw new HttpException(
-        'Wrong credentials provided',
+        'Wrong credentials provided 🎉',
         HttpStatus.BAD_REQUEST,
       );
     }
