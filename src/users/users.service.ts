@@ -31,14 +31,25 @@ class UsersService {
   }
 
   async getById(id: string) {
-    const user = await this.userModel.findById(id).populate({
-      path: 'posts',
-      populate: {
-        path: 'categories',
+    // const user = await this.userModel.findById(id).populate({
+    //   path: 'posts',
+    //   populate: {
+    //     path: 'categories',
+    //   },
+    // });
+    console.log('ddddd');
+
+    const user = await this.userModel.aggregate([
+      {
+        $match: {
+          email: 'harpreet@gmail.com',
+        },
       },
-    });
+    ]).explain();
+    console.log('ddddd', user);
 
     if (!user) {
+
       throw new NotFoundException();
     }
 
